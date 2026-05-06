@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuji Mentari Endiany - Professional Portfolio</title>
+    <style>
+        /* Import Glacial Indifference font from CDN */
+        @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+
+        :root {
+            --primary: #fc6e21;     /* Title & Bold Text (Orange) */
+            --text-dark: #222222;   /* Regular Text (Black) */
+            --bg-light: #fcf8ed;    /* Main Background */
+            --bg-white: #ffffff;    /* Card/Element Background */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* Change only headings to orange */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary);
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(252, 248, 237, 0.95);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(252, 110, 33, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* HERO SECTION */
+        #hero {
+            height: 100vh;
+            background-color: var(--bg-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        #hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--bg-light);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        /* SECTIONS GENERAL */
+        section {
+            padding: 80px 10%;
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ABOUT SECTION */
+        #about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .education-card {
+            background: var(--bg-white);
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* EXPERIENCE SECTION */
+        .experience-category {
+            margin-bottom: 50px;
+        }
+
+        .experience-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            border-bottom: 2px solid rgba(252, 110, 33, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .exp-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .exp-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .exp-card .date {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .exp-card strong {
+            color: var(--text-dark); /* Keeps bold text black */
+        }
+
+        /* SKILLS SECTION */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-box {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-white);
+            border: 1px solid #f2eade;
+            border-radius: 10px;
+            transition: box-shadow 0.3s;
+        }
+
+        .skill-box:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+
+        .skill-box h3 {
+            margin-bottom: 15px;
+            color: var(--primary); /* Sub-headings orange */
+        }
+
+        .skill-box ul {
+            list-style: none;
+            font-size: 0.95rem;
+            text-align: left;
+            color: var(--text-dark); /* List items black */
+        }
+
+        .skill-box ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-box ul li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* PORTFOLIO SECTION */
+        #portfolio {
+            text-align: center;
+        }
+
+        .portfolio-group {
+            margin-bottom: 60px;
+        }
+
+        .portfolio-group h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Combined photo & description card */
+        .portfolio-card {
+            background: var(--bg-white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            margin: 0 auto 30px auto;
+            max-width: 800px;
+            text-align: justify;
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-card p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 40px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #f6ebd8;
+            color: var(--text-dark);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid var(--primary);
+        }
+
+        footer h2 {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            margin: 10px 0;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--text-dark);
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .nav-links {
+                margin-top: 15px;
+                gap: 15px;
+            }
+            #about {
+                grid-template-columns: 1fr;
+            }
+            #hero h1 {
+                font-size: 2.2rem;
+            }
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#hero" class="logo">Fuji Mentari</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <header id="hero">
+        <img src="foto0.jpg.jpeg" alt="Fuji Mentari Endiany" class="profile-img">
+        <h1>Fuji Mentari Endiany</h1>
+        <h2 style="color: var(--primary); font-weight: bold;">Strategic Communications</h2>
+        <a href="#about" class="btn">Discover More</a>
+    </header>
+
+    <section id="about">
+        <div>
+            <h2 class="section-title" style="text-align: left;">About Me</h2>
+            <p class="about-text">
+                <strong style="color: var(--text-dark);">Universitas Multimedia Nusantara Graduate</strong><br><br>
+                Fresh from Universitas Multimedia Nusantara with a degree in Communication Science (Strategic Communication). I've spent my college years doing more than studying; I've been actively shaping narratives, managing digital campaigns, and leading meaningful community initiatives.
+            </p>
+        </div>
+        <div>
+            <div class="education-card">
+                <h3>Universitas Multimedia Nusantara</h3>
+                <p>Communication Science (Strategic Communications)<br>
+                <strong style="color: var(--text-dark);">2021 - 2025 | GPA: 3.68/4.00</strong></p>
+            </div>
+            <div class="education-card">
+                <h3>SMAN 04 Pandeglang</h3>
+                <p>Major: Natural Science<br>
+                <strong style="color: var(--text-dark);">2018 - 2021 | GPA: 84.64/100</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE DIVIDED INTO 3 CATEGORIES -->
+    <section id="experience">
+        <h2 class="section-title">Experience</h2>
+
+        <!-- Category 1: Work Experience -->
+        <div class="experience-category">
+            <h3>Work Experience</h3>
+            <div class="timeline">
+                <div class="exp-card">
+                    <h4>PT Wijaya Karya</h4>
+                    <span class="date">Feb 2024 - Jun 2024</span>
+                    <p><strong>Corporate Comm Intern</strong></p>
+                    <p>Media monitoring, press releases, content creation, and media relations.</p>
+                </div>
+                <div class="exp-card">
+                    <h4>GUEPEDIA</h4>
+                    <span class="date">Jul 2024 - Aug 2024</span>
+                    <p><strong>Social Media Admin</strong></p>
+                    <p>Managing content strategy and engagement for publishing accounts.</p>
+                </div>
+                <div class="exp-card">
+                    <h4>GMLS</h4>
+                    <span class="date">Sep 2024 - Dec 2024</span>
+                    <p><strong>Social Media Intern</strong></p>
+                    <p>Digital campaign strategist for disaster mitigation in South Lebak.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 2: Organizational / Committee Experience -->
+        <div class="experience-category">
+            <h3>Organizational / Committee Experience</h3>
+            <div class="timeline">
+                <div class="exp-card">
+                    <h4>UMN Communication Science Student Association</h4>
+                    <span class="date">2022 - 2023</span>
+                    <p><strong>Public Relations Division</strong></p>
+                    <p>Built relationships with external campus stakeholders and organized student communication events.</p>
+                </div>
+                <div class="exp-card">
+                    <h4>Campus Event Committee</h4>
+                    <span class="date">2022</span>
+                    <p><strong>Publication & Documentation Division</strong></p>
+                    <p>Designed creative content and documented activities for distribution via social media platforms.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category 3: Project Experience -->
+        <div class="experience-category">
+            <h3>Project Experience</h3>
+            <div class="timeline">
+                <div class="exp-card">
+                    <h4>MBKM Humanity Project</h4>
+                    <span class="date">Project Leader</span>
+                    <p><strong>"Nyegah Bala Laut" Documentary</strong></p>
+                    <p>Designed and led a Disaster Mitigation Campaign Program in Situregen Village. Focused on building tsunami awareness through creative media.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS & TOOLKIT -->
+    <section id="skills">
+        <h2 class="section-title">Skills & Toolkit</h2>
+        <div class="skills-grid">
+            <div class="skill-box">
+                <h3>Marketing & Strategy</h3>
+                <ul>
+                    <li>Communication Strategy & Brand Positioning</li>
+                    <li>Integrated Brand Campaigns</li>
+                    <li>Social Media & Digital Strategy</li>
+                    <li>Market Research & Consumer Analysis</li>
+                    <li>Copywriting & Storytelling</li>
+                    <li>B2B Marketing & Sales Promotion</li>
+                </ul>
+            </div>
+            <div class="skill-box">
+                <h3>Corporate & PR</h3>
+                <ul>
+                    <li>Media Monitoring & Press Release</li>
+                    <li>Event Management & Execution</li>
+                    <li>Stakeholder Relations</li>
+                    <li>Content Creation Strategy</li>
+                    <li>Budget Planning & Analysis</li>
+                    <li>Financial Reporting</li>
+                </ul>
+            </div>
+            <div class="skill-box">
+                <h3>Technical Toolkit</h3>
+                <ul>
+                    <li><strong>Design & Video:</strong> Canva, Photoshop, Lightroom, Premiere Pro, CapCut, VN</li>
+                    <li><strong>Productivity:</strong> Google Workspace, Microsoft Office 365</li>
+                    <li><strong>Analytics:</strong> Meta Business Suite, Google Trends, Hootsuite</li>
+                    <li><strong>AI Tools:</strong> ChatGPT, Claude, Gemini, Copilot</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <h2 class="section-title">Visual Portfolio</h2>
+        
+        <!-- PHOTO AND TEXT COMBINED IN PORTFOLIO CARDS -->
+        <div class="portfolio-group">
+            <h3>Work Experience</h3>
+            <div class="portfolio-card">
+                <img src="foto6.jpg.jpeg" alt="Work Experience Layout">
+                <p>Documentation and layout of work produced during the Corporate Communication Internship, covering press releases and media relations.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>Project Experience</h3>
+            <div class="portfolio-card">
+                <img src="foto2.jpg.jpeg" alt="Project Experience Layout">
+                <p>During my MBKM Humanity Project, I designed and led a Disaster Mitigation Campaign Program in Situregen Village, focusing on building community awareness around tsunami risks.</p>
+                <p>Working closely with the South Lebak Mitigation Task Force and under the support of Universitas Multimedia Nusantara, the program was carried out successfully and left a positive impact on the community.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>MBKM Humanity Project Batch 5</h3>
+            <div class="portfolio-card">
+                <img src="foto3.jpg.jpeg" alt="MBKM Layout">
+                <p>Visual documentation and collaboration highlights during the execution of the MBKM Humanity Project Batch 5 in the fostered partner village.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>Content Creation</h3>
+            <div class="portfolio-card" style="text-align: center;">
+                <img src="foto5.jpg.jpeg" alt="Content Creation 1" style="margin-bottom: 10px;">
+                <img src="foto13.jpg.jpeg" alt="Content Creation 2">
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>Poster Design</h3>
+            <div class="portfolio-card" style="text-align: center;">
+                <img src="foto9.jpg.jpeg" alt="Poster 1" style="width: 48%; display: inline-block; margin-right: 2%;">
+                <img src="foto10.jpg.jpeg" alt="Poster 2" style="width: 48%; display: inline-block;">
+                <img src="foto11.jpg.jpeg" alt="Poster 3" style="width: 48%; display: inline-block; margin-right: 2%; margin-top: 15px;">
+                <img src="foto12.jpg.jpeg" alt="Poster 4" style="width: 48%; display: inline-block; margin-top: 15px;">
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>Video Editing</h3>
+            <div class="portfolio-card">
+                <img src="foto7.jpg.jpeg" alt="Video Editing Layout">
+                <p>A collection of video editing projects using Premiere Pro, CapCut, and VN for various digital campaign purposes.</p>
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <div class="portfolio-card" style="text-align: center;">
+                <h3>Portfolio Photography</h3>
+                <img src="foto4.jpg.jpeg" alt="Photography Cover">
+                <br><br>
+                <a href="https://drive.google.com/drive/folders/1O6B6HC3TGdW7VlQeXTpXaOyMNloZyLO6?usp=sharing" class="btn" target="_blank">View Full Gallery</a>
+            </div>
+        </div>
+
+        <div class="portfolio-group">
+            <h3>Vaccine Certificate</h3>
+            <div class="portfolio-card">
+                <img src="foto14.jpg.jpeg" alt="Vaccine Layout">
+            </div>
+        </div>
+
+        <p class="quote">"Bridging communication through creative and impactful visual storytelling."</p>
+    </section>
+
+    <!-- FOOTER WITH CLICKABLE LINKS -->
+    <footer>
+        <h2>Let's Connect!</h2>
+        <p>📍 Tangerang, Banten | Indonesia</p>
+        <p>✉️ <a href="mailto:fujimentariendiany@gmail.com">fujimentariendiany@gmail.com</a></p>
+        <p>📱 Instagram: <a href="https://instagram.com/mentariief_" target="_blank">@mentariief_</a></p>
+        <p>🔗 Digital Portfolio: <a href="https://ramaririn.my.canva.site/creative-portfolio-s-fuji-mentari-endiany" target="_blank">Canva Site</a></p>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem; font-weight: normal; color: var(--text-dark);">© 2026 Fuji Mentari Endiany. All Rights Reserved.</p>
+        
+        <div style="margin-top: 20px; font-size: 0.8rem; text-align: center; color: #555;">
+            Nama : Inzaky Zaidan Asad<br>
+            Nim : 2555200008
+        </div>
+    </footer>
+
+</body>
+</html>
